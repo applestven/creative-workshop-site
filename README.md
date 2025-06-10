@@ -1,3 +1,22 @@
+##  创意盒子官网搭建 nextjs+ts+tailwindcss+react
+
+``` bash
+npx create-next-app@latest creative-workshop-site
+```
+选择的时候 没有选择 tailwindcss 所以需要安装 
+
+tailwincss4 有问题 使用3  版本
+
+``` bash
+npm install -D tailwindcss@3.3.2 postcss@latest autoprefixer@latest
+```
+ 和原官网一致 
+
+ 
+
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
 ## Getting Started
