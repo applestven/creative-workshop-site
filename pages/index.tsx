@@ -16,6 +16,19 @@ const DOWNLOAD_LINKS = {
   macArm: "http://43.139.236.50/update/macos/videoP-0.1.2-arm64.dmg",
 };
 
+type DownloadCardProps = {
+  title: string;
+  icon: React.ReactNode;
+  description: string;
+  link: string;
+};
+
+type FeatureCardProps = {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#F7F9FF] text-gray-900">
@@ -85,7 +98,7 @@ export default function Home() {
   );
 }
 
-function DownloadCard({ title, icon, description, link }: any) {
+function DownloadCard({ title, icon, description, link }: DownloadCardProps) {
   return (
     <a
       href={link}
@@ -101,7 +114,7 @@ function DownloadCard({ title, icon, description, link }: any) {
   );
 }
 
-function FeatureCard({ icon, title, description }: any) {
+function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
     <div className="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition duration-300">
       <div className="mb-3 flex justify-center">{icon}</div>
