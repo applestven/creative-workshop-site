@@ -12,7 +12,20 @@ npm install -D tailwindcss@3.3.2 postcss@latest autoprefixer@latest
 ```
  和原官网一致 
 
+## 发布 
+
+1. 使用vercel 绑定github账号 deploy 
+
+
+2. 使用香港服务器nginx代理 vercel地址 这使用了香港服务器加速效果 具体代测验 
+
+3. 可以使用域名直接换domian？ 代测试   目前够用 
+
+## 地址 
+
+[vtools.itclass.top](http://vtools.itclass.top/)
  
+## 添加 https       
 
 
 
