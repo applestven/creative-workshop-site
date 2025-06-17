@@ -11,9 +11,9 @@ import {
 import Footer from "../components/Footer";
 
 const DOWNLOAD_LINKS = {
-  windows: "http://43.139.236.50/update/windows/videoP-0.1.2-arm64.exe",
-  macIntel: "http://43.139.236.50/update/macos/videoP-0.1.2-x64.dmg",
-  macArm: "http://43.139.236.50/update/macos/videoP-0.1.2-arm64.dmg",
+  windows: "http://43.139.236.50/update/windows/Inspiro-Setup-0.1.3.exe",
+  macIntel: "http://43.139.236.50/update/macos/Inspiro-Setup-0.1.3.dmg",
+  macArm: "http://43.139.236.50/update/macos/Inspiro-Setup-0.1.3.dmg",
 };
 
 type DownloadCardProps = {

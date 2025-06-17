@@ -11,7 +11,7 @@ export default function AutoDownload() {
       setUrl("http://43.139.236.50/update/windows/videoP-0.1.2-arm64.exe");
     } else if (ua.includes("mac os") || ua.includes("macintosh")) {
       setPlatform("macos");
-      setUrl("http://43.139.236.50/update/macos/videoP-0.1.2-arm64.dmg");
+      setUrl("http://43.139.236.50/update/macos/Inspiro-Setup-0.1.3.dmg");
     } else if (ua.includes("linux")) {
       setPlatform("linux");
       setUrl("http://43.139.236.50/update/linux/videoP-0.1.2-arm64.AppImage");
