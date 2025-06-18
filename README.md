@@ -15,17 +15,26 @@ npm install -D tailwindcss@3.3.2 postcss@latest autoprefixer@latest
 ## 发布 
 
 1. 使用vercel 绑定github账号 deploy 
+https://vercel.com/applestvens-projects
 
 
-2. 使用香港服务器nginx代理 vercel地址 这使用了香港服务器加速效果 具体代测验 
+1. 使用香港服务器nginx代理 vercel地址 这使用了香港服务器加速效果 具体代测验 
 
-3. 可以使用域名直接换domian？ 代测试   目前够用 
+2. 可以使用域名直接换domian？ 代测试   目前够用 
 
 ## 地址 
 
 [vtools.itclass.top](http://vtools.itclass.top/)
  
 ## 添加 https       
+
+## 部署 
+
+1. dns在83服务器上 
+
+nginx 转发 https://creative-workshop-site.vercel.app/ 
+
+
 
 
 
