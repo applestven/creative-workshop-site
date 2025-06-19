@@ -14,9 +14,9 @@ import Footer from "../components/Footer";
 const VERSION = "0.1.3";
 
 const DOWNLOAD_LINKS = {
-  windows: `http://43.139.236.50/update/windows/Inspiro-Setup-${VERSION}.exe`,
-  macIntel: `http://43.139.236.50/update/macos/Inspiro-Setup-${VERSION}.dmg`,
-  macArm: `http://43.139.236.50/update/macos/Inspiro-Setup-${VERSION}.dmg`,
+  windows: `https://update.itclass.top/update/windows/Inspiro-Setup-${VERSION}.exe`,
+  macIntel: `https://update.itclass.top/update/macos/Inspiro-Setup-${VERSION}.dmg`,
+  macArm: `https://update.itclass.top/update/macos/Inspiro-Setup-${VERSION}.dmg`,
 };
 
 type DownloadCardProps = {
