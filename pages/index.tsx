@@ -1,7 +1,7 @@
 // pages/index.tsx
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { Laptop2, Apple, Cpu, DownloadCloud } from "lucide-react";
+import { Laptop2, Apple, Cpu, DownloadCloud,Sparkles,MonitorPlay } from "lucide-react";
 import Footer from "../components/Footer";
 
 // 这在/api/get-update-url 读取yml文件失败的时候会起作用
@@ -11,6 +11,12 @@ type DownloadLinks = {
   windows: string;
   macIntel: string;
   macArm: string;
+};
+
+type FeatureCardProps = {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
 };
 
 export default function Home() {
@@ -78,6 +84,25 @@ export default function Home() {
             />
           </div>
         </section>
+
+        {/* 功能亮点 */}
+        <section className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <FeatureCard
+            icon={<Sparkles className="text-indigo-500 w-8 h-8" />}
+            title="一键智能处理"
+            description="自动剪辑、转码、加字幕，操作极简，效率倍增"
+          />
+          <FeatureCard
+            icon={<MonitorPlay className="text-purple-600 w-8 h-8" />}
+            title="高品质输出"
+            description="支持4K高清导出，无水印，画质稳定"
+          />
+          <FeatureCard
+            icon={<DownloadCloud className="text-blue-500 w-8 h-8" />}
+            title="多平台支持"
+            description="兼容 Windows、macOS 多芯片架构"
+          />
+        </section>
       </main>
 
       <Footer />
@@ -108,5 +133,15 @@ function DownloadCard({
         <DownloadCloud className="w-4 h-4" /> 下载
       </span>
     </a>
+  );
+}
+
+function FeatureCard({ icon, title, description }: FeatureCardProps) {
+  return (
+    <div className="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition duration-300">
+      <div className="mb-3 flex justify-center">{icon}</div>
+      <h4 className="text-xl font-semibold text-gray-800 mb-2">{title}</h4>
+      <p className="text-gray-500 text-sm leading-relaxed">{description}</p>
+    </div>
   );
 }
