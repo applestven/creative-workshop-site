@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Laptop2, Apple, Cpu, DownloadCloud } from "lucide-react";
 import Footer from "../components/Footer";
 
+// 这在/api/get-update-url 读取yml文件失败的时候会起作用
 const VERSION = "0.1.4";
 
 type DownloadLinks = {
@@ -23,9 +24,7 @@ export default function Home() {
     fetch("/api/get-update-url")
       .then((res) => res.json())
       .then((data) => {
-        console.log("获取更新地址成功:", data);
         if (data.windows?.url && data.macos?.url) {
-          console.log("更新地址:", data);
           setDownloadLinks({
             windows: `https://update.itclass.top/update/windows/${data.windows.url}`,
             macIntel: `https://update.itclass.top/update/macos/${data.macos.url}`,
@@ -39,7 +38,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F7F9FF] text-gray-900">
+    <div className="flex flex-col min-h-screen bg-[#F7F9FF] text-gray-900">
       <Head>
         <title>创意工坊 - 一键音视频处理</title>
         <meta
@@ -55,7 +54,7 @@ export default function Home() {
         <p className="text-lg text-gray-600">一键音视频处理工具，轻松创作，快速分享</p>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6">
+      <main className="max-w-6xl mx-auto px-6 flex-grow">
         <section className="bg-[#E9EDFC] rounded-3xl shadow-xl p-10">
           <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">立即下载</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
