@@ -11,7 +11,7 @@ import {
 import Footer from "../components/Footer";
 
 // 版本号
-const VERSION = "0.1.3";
+const VERSION = "0.1.4";
 
 const DOWNLOAD_LINKS = {
   windows: `https://update.itclass.top/update/windows/Inspiro-Setup-${VERSION}.exe`,
