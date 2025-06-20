@@ -1,38 +1,43 @@
 // pages/index.tsx
 import Head from "next/head";
-import {
-  Sparkles,
-  MonitorPlay,
-  DownloadCloud,
-  Laptop2,
-  Apple,
-  Cpu,
-} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Laptop2, Apple, Cpu, DownloadCloud } from "lucide-react";
 import Footer from "../components/Footer";
 
-// 版本号
 const VERSION = "0.1.4";
 
-const DOWNLOAD_LINKS = {
-  windows: `https://update.itclass.top/update/windows/Inspiro-Setup-${VERSION}.exe`,
-  macIntel: `https://update.itclass.top/update/macos/Inspiro-Setup-${VERSION}.dmg`,
-  macArm: `https://update.itclass.top/update/macos/Inspiro-Setup-${VERSION}.dmg`,
-};
-
-type DownloadCardProps = {
-  title: string;
-  icon: React.ReactNode;
-  description: string;
-  link: string;
-};
-
-type FeatureCardProps = {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+type DownloadLinks = {
+  windows: string;
+  macIntel: string;
+  macArm: string;
 };
 
 export default function Home() {
+  const [downloadLinks, setDownloadLinks] = useState<DownloadLinks>({
+    windows: `https://update.itclass.top/update/windows/Inspiro-Setup-${VERSION}.exe`,
+    macIntel: `https://update.itclass.top/update/macos/Inspiro-Setup-${VERSION}.dmg`,
+    macArm: `https://update.itclass.top/update/macos/Inspiro-Setup-${VERSION}.dmg`,
+  });
+
+  useEffect(() => {
+    fetch("/api/get-update-url")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("获取更新地址成功:", data);
+        if (data.windows?.url && data.macos?.url) {
+          console.log("更新地址:", data);
+          setDownloadLinks({
+            windows: `https://update.itclass.top/update/windows/${data.windows.url}`,
+            macIntel: `https://update.itclass.top/update/macos/${data.macos.url}`,
+            macArm: `https://update.itclass.top/update/macos/${data.macos.url}`,
+          });
+        }
+      })
+      .catch(() => {
+        // 请求失败时保持默认链接
+      });
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#F7F9FF] text-gray-900">
       <Head>
@@ -51,7 +56,6 @@ export default function Home() {
       </header>
 
       <main className="max-w-6xl mx-auto px-6">
-        {/* 下载区 */}
         <section className="bg-[#E9EDFC] rounded-3xl shadow-xl p-10">
           <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">立即下载</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -59,40 +63,21 @@ export default function Home() {
               title="Windows 版"
               icon={<Laptop2 className="text-blue-600 w-8 h-8" />}
               description="适用于 Win 10 / 11"
-              link={DOWNLOAD_LINKS.windows}
+              link={downloadLinks.windows}
             />
             <DownloadCard
               title="Mac 版（Intel 芯片）"
               icon={<Apple className="text-gray-800 w-8 h-8" />}
               description="适用于 Intel Mac"
-              link={DOWNLOAD_LINKS.macIntel}
+              link={downloadLinks.macIntel}
             />
             <DownloadCard
               title="Mac 版（Apple 芯片）"
               icon={<Cpu className="text-green-600 w-8 h-8" />}
               description="适用于 M1 / M2 / M3 / M4"
-              link={DOWNLOAD_LINKS.macArm}
+              link={downloadLinks.macArm}
             />
           </div>
-        </section>
-
-        {/* 功能亮点 */}
-        <section className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <FeatureCard
-            icon={<Sparkles className="text-indigo-500 w-8 h-8" />}
-            title="一键智能处理"
-            description="自动剪辑、转码、加字幕，操作极简，效率倍增"
-          />
-          <FeatureCard
-            icon={<MonitorPlay className="text-purple-600 w-8 h-8" />}
-            title="高品质输出"
-            description="支持4K高清导出，无水印，画质稳定"
-          />
-          <FeatureCard
-            icon={<DownloadCloud className="text-blue-500 w-8 h-8" />}
-            title="多平台支持"
-            description="兼容 Windows、macOS 多芯片架构"
-          />
         </section>
       </main>
 
@@ -101,7 +86,17 @@ export default function Home() {
   );
 }
 
-function DownloadCard({ title, icon, description, link }: DownloadCardProps) {
+function DownloadCard({
+  title,
+  icon,
+  description,
+  link,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  description: string;
+  link: string;
+}) {
   return (
     <a
       href={link}
@@ -114,15 +109,5 @@ function DownloadCard({ title, icon, description, link }: DownloadCardProps) {
         <DownloadCloud className="w-4 h-4" /> 下载
       </span>
     </a>
-  );
-}
-
-function FeatureCard({ icon, title, description }: FeatureCardProps) {
-  return (
-    <div className="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition duration-300">
-      <div className="mb-3 flex justify-center">{icon}</div>
-      <h4 className="text-xl font-semibold text-gray-800 mb-2">{title}</h4>
-      <p className="text-gray-500 text-sm leading-relaxed">{description}</p>
-    </div>
   );
 }
